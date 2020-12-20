@@ -9,48 +9,144 @@ import UIKit
 import MobileCoreServices
 
 class ActionViewController: UIViewController {
-
+    
     @IBOutlet weak var imageView: UIImageView!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        processPickedFile()
+    }
     
-        // Get the item[s] we're handling from the extension context.
-        
-        // For example, look for an image and place it into an image view.
-        // Replace this with something appropriate for the type[s] your extension supports.
-        var imageFound = false
-        for item in self.extensionContext!.inputItems as! [NSExtensionItem] {
-            for provider in item.attachments! {
-                if provider.hasItemConformingToTypeIdentifier(kUTTypeImage as String) {
-                    // This is an image. We'll load it, then place it in our image view.
-                    weak var weakImageView = self.imageView
-                    provider.loadItem(forTypeIdentifier: kUTTypeImage as String, options: nil, completionHandler: { (imageURL, error) in
-                        OperationQueue.main.addOperation {
-                            if let strongImageView = weakImageView {
-                                if let imageURL = imageURL as? URL {
-                                    strongImageView.image = UIImage(data: try! Data(contentsOf: imageURL))
-                                }
-                            }
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    
+    func processPickedFile(){
+        if(self.extensionContext!.inputItems.count > 0){
+            let inputItem = self.extensionContext?.inputItems.first as! NSExtensionItem
+            for provider: AnyObject in inputItem.attachments!{
+                let itemProvider = provider as! NSItemProvider
+                if(itemProvider.hasItemConformingToTypeIdentifier(kUTTypePDF as String) || itemProvider.hasItemConformingToTypeIdentifier(kUTTypePlainText as String) || itemProvider.hasItemConformingToTypeIdentifier("com.microsoft.word.doc")){
+                    itemProvider.loadItem(forTypeIdentifier: kUTTypePDF as String, options: nil, completionHandler: { (file, error) in
+                        if(error == nil){
+                            self.setPickedFile(file: file!)
                         }
                     })
-                    
-                    imageFound = true
                     break
                 }
             }
-            
-            if (imageFound) {
-                // We only handle one image, so stop looking for more.
-                break
-            }
         }
     }
-
+    
     @IBAction func done() {
         // Return any edited content to the host app.
         // This template doesn't do anything, so we just echo the passed in items.
         self.extensionContext!.completeRequest(returningItems: self.extensionContext!.inputItems, completionHandler: nil)
     }
+    
+    private func generateBoundaryString() -> String {
+        return "Boundary-\(UUID().uuidString)"
+    }
+    
+    func savePdf(urlString:String, fileName:String) {
+           DispatchQueue.main.async {
+               let url = URL(string: urlString)
+               let pdfData = try? Data.init(contentsOf: url!)
+               let resourceDocPath = (FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)).last! as URL
+               let pdfNameFromUrl = "FreightOne-\(fileName).pdf"
+               let actualPath = resourceDocPath.appendingPathComponent(pdfNameFromUrl)
+               do {
+                   try pdfData?.write(to: actualPath, options: .atomic)
+                   print("pdf successfully saved!")
+               } catch {
+                   print("Pdf could not be saved")
+               }
+           }
+       }
+    
+    func setPickedFile(file: NSSecureCoding){
+        if let fileURL = file as? URL{
+            let fileName = fileURL.lastPathComponent
+            savePdf(urlString: fileURL.absoluteString,fileName: fileName)
+            createRequest(fileUrl: fileName)
+//           pdfFileAlreadySaved(url: fileURL.absoluteString,fileName: fileName)
+            
+        }
+    }
+    
+    func pdfFileAlreadySaved(url:String, fileName:String)-> Bool {
+        var status = false
+        if #available(iOS 10.0, *) {
+            do {
+                let docURL = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
+                let contents = try FileManager.default.contentsOfDirectory(at: docURL, includingPropertiesForKeys: [.fileResourceTypeKey], options: .skipsHiddenFiles)
+                for url in contents {
+                    if url.description.contains("FreightOne-\(fileName).pdf") {
+                        status = true
+                    }
+                }
+            } catch {
+                print("could not locate pdf file !!!!!!!")
+            }
+        }
+        return status
+    }
+    
+    func createRequest(fileUrl : String){
+        
+        let url = URL(string:"http://truckingnew-env.eba-q2gns4ca.us-east-1.elasticbeanstalk.com/api/v1/trucking/file/upload/pdf/0")
+        guard let requestUrl = url else { fatalError() }
+        
+        // generate boundary string using a unique per-app string
+        let boundary = UUID().uuidString
+        
+        let session = URLSession.shared
 
+        // Prepare URL Request Object
+        var request = URLRequest(url: requestUrl)
+        request.httpMethod = "POST"
+        
+        let token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzb2ZlciIsInJvbGVzIjoiUk9MRV9EUklWRVIiLCJpYXQiOjE2MDgwOTc1MTV9.eo3tjsfZcDOzkqRpBlMQ_7wI3nG1lsVI-bc_xLTqTV8"
+        
+        request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+
+        request.setValue("Bearer \(token)", forHTTPHeaderField:"Authorization")        // Set HTTP Request Body
+
+        //Create Data
+        var body = Data()
+        
+        do{
+            let resourceDocPath = (FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)).last! as URL
+            let pdfNameFromUrl = "FreightOne-\(fileUrl).pdf"
+            let actualPath = resourceDocPath.appendingPathComponent(pdfNameFromUrl)
+            
+            let data = try Data(contentsOf: actualPath)
+            body.append("\r\n--\(boundary)\r\n".data(using: .utf8)!)
+            body.append("Content-Disposition: form-data; name=\"file\"; filename=\"\(fileUrl)\"\r\n".data(using: .utf8)!)
+            body.append("Content-Type: application/pdf\r\n\r\n".data(using: .utf8)!)
+            body.append(data)
+            body.append("\r\n--\(boundary)--\r\n".data(using: .utf8)!)
+        } catch {
+            
+        }
+        
+        // Send a POST request to the URL, with the data we created earlier
+        session.uploadTask(with: request, from: body, completionHandler: { responseData, response, error in
+            if let httpResponse = response as? HTTPURLResponse {
+                print("error \(httpResponse.statusCode)")
+             
+            }
+            
+            if let error = error {
+                print("Action  response code \(error)")
+                error
+                return
+            }
+            
+            if error == nil {
+
+                
+            }
+        }).resume()
+    }
 }

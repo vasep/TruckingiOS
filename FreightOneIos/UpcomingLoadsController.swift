@@ -7,17 +7,82 @@
 
 import UIKit
 
-class UpcomingLoadsController: UITableViewCell {
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+class UpcomingLoadsController: UIViewController,UITableViewDelegate,UITableViewDataSource{
+    
+    var loadsForDriver: LoadsForDriver?
+    var genericModel: [GenericModel]?
+    @IBOutlet weak var tableView: UITableView!
+    
+    override func viewDidLoad() {
+        fetchCompletedLoads(){(loadsForDriver,nil) in
+            DispatchQueue.main.async {
+                self.loadsForDriver = loadsForDriver
+                self.genericModel = self.loadsForDriver?.genericModel
+                self.tableView.delegate = self
+                self.tableView.dataSource = self
+                self.tableView.reloadData()
+            }
+        }
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    
+    func fetchCompletedLoads(completionHandler completion: @escaping (LoadsForDriver, Error?) -> Void){
+        // Prepare URL
+        let url = URL(string:"http://truckingnew-env.eba-q2gns4ca.us-east-1.elasticbeanstalk.com/api/v1/trucking/mobile/drivers/loads/paginated?pageNumber=0&pageSize=20&status=Upcoming")
+        guard let requestUrl = url else { fatalError() }
+        // Prepare URL Request Object
+        var request = URLRequest(url: requestUrl)
+        request.httpMethod = "GET"
+        
+        let token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzb2ZlciIsInJvbGVzIjoiUk9MRV9EUklWRVIiLCJpYXQiOjE2MDgwOTc1MTV9.eo3tjsfZcDOzkqRpBlMQ_7wI3nG1lsVI-bc_xLTqTV8"
+        
+        print("tokenId >> \(User.userToken)")
+        
+        //HTTP Headers
+        request.setValue("Bearer \(token)", forHTTPHeaderField:"Authorization")        // Set HTTP Request Body
+        // Perform HTTP Request
+        
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            
+            // Check for Error
+            if let error = error {
+                print("CompletedController response code \(error)")
+                return
+            }
+            
+            if let httpResponse = response as? HTTPURLResponse {
+                print("error at Get Loads \(httpResponse.statusCode)")
+                if httpResponse.statusCode == 200 {
+                    do {
+                        let loadsForDriver = try? JSONDecoder().decode(LoadsForDriver.self, from: data!)
+                        completion(loadsForDriver!,nil)
+                    } catch {
+                        print(error)
+                    }
+                }
+            }
+        }
+        task.resume()
     }
-
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "upcomingCellDetailsSegue" {
+            let cellDetailsVC = segue.destination as! CellDetailsController
+            cellDetailsVC.loadId = self.genericModel![self.tableView.indexPathForSelectedRow!.row].id
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.performSegue(withIdentifier: "upcomingCellDetailsSegue", sender: nil)
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return loadsForDriver!.count    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "loadCell", for: indexPath)
+        let str:String = String(describing: self.genericModel![indexPath.row].id)
+        cell.textLabel?.textAlignment = .center
+        cell.textLabel?.text = str
+        return cell
+    }
 }
