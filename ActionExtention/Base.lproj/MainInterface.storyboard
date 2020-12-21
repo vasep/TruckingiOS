@@ -16,34 +16,81 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="528"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="NOA-Dm-cuz">
-                                <rect key="frame" x="0.0" y="44" width="320" height="44"/>
-                                <items>
-                                    <navigationItem id="3HJ-uW-3hn">
-                                        <barButtonItem key="leftBarButtonItem" title="Done" style="done" id="WYi-yp-eM6">
-                                            <connections>
-                                                <action selector="done" destination="ObA-dk-sSI" id="Qdu-qn-U6V"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="gBz-8Z-ABW">
-                                <rect key="frame" x="141" y="254" width="20" height="20"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </activityIndicatorView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lRF-If-bOq">
+                                <rect key="frame" x="85" y="189" width="150" height="150"/>
+                                <subviews>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rhb-Lf-RO6">
+                                        <rect key="frame" x="52" y="110" width="46" height="30"/>
+                                        <state key="normal" title="Ok"/>
+                                        <connections>
+                                            <action selector="dissmissButtonClicked:" destination="ObA-dk-sSI" eventType="touchUpInside" id="vBe-Cn-N8P"/>
+                                        </connections>
+                                    </button>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="gCg-YK-XNQ">
+                                        <rect key="frame" x="56.5" y="56.5" width="37" height="37"/>
+                                    </activityIndicatorView>
+                                    <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkmark.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Kta-BX-eO2">
+                                        <rect key="frame" x="52.5" y="53" width="45" height="44"/>
+                                        <color key="tintColor" systemColor="systemGreenColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="45" id="4j0-WZ-vJr"/>
+                                            <constraint firstAttribute="width" constant="45" id="r3P-kd-phW"/>
+                                        </constraints>
+                                    </imageView>
+                                    <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="xmark.octagon.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="3gd-9O-6GK" userLabel="Result Image Error">
+                                        <rect key="frame" x="52.5" y="53" width="45" height="43.5"/>
+                                        <color key="tintColor" systemColor="systemRedColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="45" id="5hj-Ob-J0Q"/>
+                                            <constraint firstAttribute="height" constant="45" id="QsB-L3-arZ"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Uploading.." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Sh-fy-QWa">
+                                        <rect key="frame" x="0.0" y="15" width="150" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.1176470588" green="0.56470588239999997" blue="1" alpha="0.8980392157" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="Kta-BX-eO2" firstAttribute="centerY" secondItem="lRF-If-bOq" secondAttribute="centerY" id="52z-fL-yl6"/>
+                                    <constraint firstItem="8Sh-fy-QWa" firstAttribute="leading" secondItem="lRF-If-bOq" secondAttribute="leading" id="77b-tj-iU3"/>
+                                    <constraint firstItem="8Sh-fy-QWa" firstAttribute="top" secondItem="lRF-If-bOq" secondAttribute="top" constant="15" id="7Ky-V1-hmp"/>
+                                    <constraint firstAttribute="width" constant="150" id="8GW-rg-IIk"/>
+                                    <constraint firstAttribute="trailing" secondItem="8Sh-fy-QWa" secondAttribute="trailing" id="8VI-KL-5fp"/>
+                                    <constraint firstAttribute="height" constant="150" id="ABE-lX-0Of"/>
+                                    <constraint firstItem="3gd-9O-6GK" firstAttribute="centerY" secondItem="lRF-If-bOq" secondAttribute="centerY" id="IQH-VN-Psq"/>
+                                    <constraint firstAttribute="trailing" secondItem="Rhb-Lf-RO6" secondAttribute="trailing" constant="52" id="QaY-tr-4ew"/>
+                                    <constraint firstItem="Rhb-Lf-RO6" firstAttribute="leading" secondItem="lRF-If-bOq" secondAttribute="leading" constant="52" id="WTG-NR-J26"/>
+                                    <constraint firstItem="gCg-YK-XNQ" firstAttribute="centerX" secondItem="lRF-If-bOq" secondAttribute="centerX" id="Z2W-tz-Nxd"/>
+                                    <constraint firstItem="3gd-9O-6GK" firstAttribute="centerX" secondItem="lRF-If-bOq" secondAttribute="centerX" id="bTi-lh-oIK"/>
+                                    <constraint firstItem="Kta-BX-eO2" firstAttribute="centerX" secondItem="lRF-If-bOq" secondAttribute="centerX" id="hmT-Jc-nAN"/>
+                                    <constraint firstAttribute="bottom" secondItem="Rhb-Lf-RO6" secondAttribute="bottom" constant="10" id="iw6-rT-jt9"/>
+                                    <constraint firstItem="gCg-YK-XNQ" firstAttribute="centerY" secondItem="lRF-If-bOq" secondAttribute="centerY" id="kBj-5U-x4A"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="VVe-Uw-JpX"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="VVe-Uw-JpX" firstAttribute="trailing" secondItem="NOA-Dm-cuz" secondAttribute="trailing" id="A05-Pj-hrr"/>
-                            <constraint firstItem="NOA-Dm-cuz" firstAttribute="leading" secondItem="VVe-Uw-JpX" secondAttribute="leading" id="HxO-8t-aoh"/>
-                            <constraint firstItem="NOA-Dm-cuz" firstAttribute="top" secondItem="VVe-Uw-JpX" secondAttribute="top" id="we0-1t-bgp"/>
+                            <constraint firstItem="lRF-If-bOq" firstAttribute="centerX" secondItem="zMn-AG-sqS" secondAttribute="centerX" id="rjt-fP-zxW"/>
+                            <constraint firstItem="lRF-If-bOq" firstAttribute="centerY" secondItem="zMn-AG-sqS" secondAttribute="centerY" id="xlL-fy-HdG"/>
                         </constraints>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="528"/>
                     <connections>
+                        <outlet property="dissmissButton" destination="Rhb-Lf-RO6" id="PPY-ps-EHI"/>
+                        <outlet property="errorImageView" destination="3gd-9O-6GK" id="Cc2-Sd-tvQ"/>
+                        <outlet property="loadingLabel" destination="8Sh-fy-QWa" id="fLn-w9-CyT"/>
+                        <outlet property="progressWidget" destination="gCg-YK-XNQ" id="cGY-pE-cEb"/>
+                        <outlet property="resultIMage" destination="Kta-BX-eO2" id="t6q-Tr-GnL"/>
                         <outlet property="view" destination="zMn-AG-sqS" id="Qma-de-2ek"/>
                     </connections>
                 </viewController>
@@ -53,8 +100,13 @@
         </scene>
     </scenes>
     <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        <image name="checkmark.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="xmark.octagon.fill" catalog="system" width="128" height="112"/>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

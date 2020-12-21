@@ -10,10 +10,15 @@ import MobileCoreServices
 
 class ActionViewController: UIViewController {
     
-    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var errorImageView: UIImageView!
+    @IBOutlet weak var resultIMage: UIImageView!
+    @IBOutlet weak var loadingLabel: UILabel!
+    @IBOutlet weak var progressWidget: UIActivityIndicatorView!
+    @IBOutlet weak var dissmissButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        progressWidget.startAnimating()
         processPickedFile()
     }
     
@@ -38,39 +43,25 @@ class ActionViewController: UIViewController {
         }
     }
     
-    @IBAction func done() {
-        // Return any edited content to the host app.
-        // This template doesn't do anything, so we just echo the passed in items.
-        self.extensionContext!.completeRequest(returningItems: self.extensionContext!.inputItems, completionHandler: nil)
-    }
-    
-    private func generateBoundaryString() -> String {
-        return "Boundary-\(UUID().uuidString)"
-    }
-    
     func savePdf(urlString:String, fileName:String) {
-           DispatchQueue.main.async {
-               let url = URL(string: urlString)
-               let pdfData = try? Data.init(contentsOf: url!)
-               let resourceDocPath = (FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)).last! as URL
-               let pdfNameFromUrl = "FreightOne-\(fileName).pdf"
-               let actualPath = resourceDocPath.appendingPathComponent(pdfNameFromUrl)
-               do {
-                   try pdfData?.write(to: actualPath, options: .atomic)
-                   print("pdf successfully saved!")
-               } catch {
-                   print("Pdf could not be saved")
-               }
-           }
-       }
+        DispatchQueue.main.async {
+            let url = URL(string: urlString)
+            let pdfData = try? Data.init(contentsOf: url!)
+            let resourceDocPath = (FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)).last! as URL
+            let pdfNameFromUrl = "FreightOne-\(fileName).pdf"
+            let actualPath = resourceDocPath.appendingPathComponent(pdfNameFromUrl)
+            do {
+                try pdfData?.write(to: actualPath, options: .atomic)
+                print("pdf successfully saved!")
+            } catch {
+                print("Pdf could not be saved")
+            }
+        }
+    }
     
     func setPickedFile(file: NSSecureCoding){
         if let fileURL = file as? URL{
-            let fileName = fileURL.lastPathComponent
-            savePdf(urlString: fileURL.absoluteString,fileName: fileName)
-            createRequest(fileUrl: fileName)
-//           pdfFileAlreadySaved(url: fileURL.absoluteString,fileName: fileName)
-            
+            createRequest(fileUrl: fileURL)
         }
     }
     
@@ -92,7 +83,7 @@ class ActionViewController: UIViewController {
         return status
     }
     
-    func createRequest(fileUrl : String){
+    func createRequest(fileUrl : URL){
         
         let url = URL(string:"http://truckingnew-env.eba-q2gns4ca.us-east-1.elasticbeanstalk.com/api/v1/trucking/file/upload/pdf/0")
         guard let requestUrl = url else { fatalError() }
@@ -101,7 +92,7 @@ class ActionViewController: UIViewController {
         let boundary = UUID().uuidString
         
         let session = URLSession.shared
-
+        
         // Prepare URL Request Object
         var request = URLRequest(url: requestUrl)
         request.httpMethod = "POST"
@@ -109,20 +100,16 @@ class ActionViewController: UIViewController {
         let token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzb2ZlciIsInJvbGVzIjoiUk9MRV9EUklWRVIiLCJpYXQiOjE2MDgwOTc1MTV9.eo3tjsfZcDOzkqRpBlMQ_7wI3nG1lsVI-bc_xLTqTV8"
         
         request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
-
+        
         request.setValue("Bearer \(token)", forHTTPHeaderField:"Authorization")        // Set HTTP Request Body
-
+        
         //Create Data
         var body = Data()
         
         do{
-            let resourceDocPath = (FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)).last! as URL
-            let pdfNameFromUrl = "FreightOne-\(fileUrl).pdf"
-            let actualPath = resourceDocPath.appendingPathComponent(pdfNameFromUrl)
-            
-            let data = try Data(contentsOf: actualPath)
+            let data = try Data(contentsOf: fileUrl)
             body.append("\r\n--\(boundary)\r\n".data(using: .utf8)!)
-            body.append("Content-Disposition: form-data; name=\"file\"; filename=\"\(fileUrl)\"\r\n".data(using: .utf8)!)
+            body.append("Content-Disposition: form-data; name=\"file\"; filename=\"\(fileUrl.lastPathComponent)\"\r\n".data(using: .utf8)!)
             body.append("Content-Type: application/pdf\r\n\r\n".data(using: .utf8)!)
             body.append(data)
             body.append("\r\n--\(boundary)--\r\n".data(using: .utf8)!)
@@ -133,20 +120,32 @@ class ActionViewController: UIViewController {
         // Send a POST request to the URL, with the data we created earlier
         session.uploadTask(with: request, from: body, completionHandler: { responseData, response, error in
             if let httpResponse = response as? HTTPURLResponse {
-                print("error \(httpResponse.statusCode)")
-             
-            }
-            
-            if let error = error {
-                print("Action  response code \(error)")
-                error
-                return
-            }
-            
-            if error == nil {
-
-                
+                if httpResponse.statusCode == 200 {
+                    DispatchQueue.main.async {
+                        self.progressWidget.stopAnimating()
+                        self.progressWidget.isHidden = true
+                        self.resultIMage.isHidden = false
+                        self.loadingLabel.textColor = UIColor.green
+                        self.loadingLabel.text="Successful"
+                        self.progressWidget.isHidden = true
+                        self.dissmissButton.isHidden = false
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        self.progressWidget.stopAnimating()
+                        self.progressWidget.isHidden = true
+                        self.errorImageView.isHidden = false
+                        self.loadingLabel.textColor = UIColor.red
+                        self.loadingLabel.text="Failed"
+                        self.progressWidget.isHidden = true
+                        self.dissmissButton.isHidden = false
+                    }
+                }
             }
         }).resume()
+    }
+    
+    @IBAction func dissmissButtonClicked(_ sender: Any) {
+        self.extensionContext!.completeRequest(returningItems: self.extensionContext!.inputItems, completionHandler: nil)
     }
 }

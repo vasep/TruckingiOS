@@ -3,6 +3,17 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "SplashController.viewDidLoad():SplashController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "LoginController.viewDidAppear(_:):LoginController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "User.userToken">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "closure #1 in LoginController.performLogin(passwordString:usernameString:):LoginController.swift">
          <PersistentStrings>
             <PersistentString

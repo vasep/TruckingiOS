@@ -24,12 +24,14 @@
 		3371ACA8258A8F310014F721 /* EquipmentTruckDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3371ACA7258A8F310014F721 /* EquipmentTruckDTO.swift */; };
 		3371ACB5258A91FA0014F721 /* DriverTruckDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3371ACB4258A91FA0014F721 /* DriverTruckDTO.swift */; };
 		3371ACBA258A92100014F721 /* TruckLoadDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3371ACB9258A92100014F721 /* TruckLoadDTO.swift */; };
+		33BD2FF72590BC4C004E5C2F /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33BD2FF62590BC4C004E5C2F /* Launch Screen.storyboard */; };
+		33BD300D2590C5E8004E5C2F /* TopDetailsStopsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BD300B2590C5E8004E5C2F /* TopDetailsStopsCell.swift */; };
+		33BD300E2590C5E8004E5C2F /* TopDetailsStopsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33BD300C2590C5E8004E5C2F /* TopDetailsStopsCell.xib */; };
 		33FE6B872587634300F0E47E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FE6B862587634300F0E47E /* AppDelegate.swift */; };
 		33FE6B892587634300F0E47E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FE6B882587634300F0E47E /* SceneDelegate.swift */; };
 		33FE6B8E2587634300F0E47E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33FE6B8C2587634300F0E47E /* Main.storyboard */; };
 		33FE6B902587634500F0E47E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33FE6B8F2587634500F0E47E /* Assets.xcassets */; };
 		33FE6BD92587891200F0E47E /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FE6BD82587891200F0E47E /* LoginController.swift */; };
-		33FE6BE1258797C800F0E47E /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33FE6BE0258797C800F0E47E /* Launch Screen.storyboard */; };
 		33FE6BF22587BB7600F0E47E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FE6BF12587BB7600F0E47E /* User.swift */; };
 		33FE6BFF2587C83000F0E47E /* DashboardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FE6BFE2587C83000F0E47E /* DashboardController.swift */; };
 		33FE6CCB25890D3A00F0E47E /* CompleteLoadsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FE6CCA25890D3900F0E47E /* CompleteLoadsController.swift */; };
@@ -80,6 +82,9 @@
 		3371ACA7258A8F310014F721 /* EquipmentTruckDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquipmentTruckDTO.swift; sourceTree = "<group>"; };
 		3371ACB4258A91FA0014F721 /* DriverTruckDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverTruckDTO.swift; sourceTree = "<group>"; };
 		3371ACB9258A92100014F721 /* TruckLoadDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TruckLoadDTO.swift; sourceTree = "<group>"; };
+		33BD2FF62590BC4C004E5C2F /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		33BD300B2590C5E8004E5C2F /* TopDetailsStopsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopDetailsStopsCell.swift; sourceTree = "<group>"; };
+		33BD300C2590C5E8004E5C2F /* TopDetailsStopsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TopDetailsStopsCell.xib; sourceTree = "<group>"; };
 		33FE6B832587634300F0E47E /* FreightOneIos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FreightOneIos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		33FE6B862587634300F0E47E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		33FE6B882587634300F0E47E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -87,7 +92,6 @@
 		33FE6B8F2587634500F0E47E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		33FE6B942587634500F0E47E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		33FE6BD82587891200F0E47E /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
-		33FE6BE0258797C800F0E47E /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		33FE6BF12587BB7600F0E47E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		33FE6BFE2587C83000F0E47E /* DashboardController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardController.swift; sourceTree = "<group>"; };
 		33FE6CCA25890D3900F0E47E /* CompleteLoadsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteLoadsController.swift; sourceTree = "<group>"; };
@@ -137,6 +141,17 @@
 			path = ActionExtention;
 			sourceTree = "<group>";
 		};
+		33BD2FFC2590C564004E5C2F /* CustomTableCells */ = {
+			isa = PBXGroup;
+			children = (
+				3369691F258B77FD00C02F02 /* StopsTableViewCell.swift */,
+				33BD300B2590C5E8004E5C2F /* TopDetailsStopsCell.swift */,
+				33696920258B77FD00C02F02 /* StopsTableViewCell.xib */,
+				33BD300C2590C5E8004E5C2F /* TopDetailsStopsCell.xib */,
+			);
+			path = CustomTableCells;
+			sourceTree = "<group>";
+		};
 		33FE6B7A2587634300F0E47E = {
 			isa = PBXGroup;
 			children = (
@@ -160,20 +175,19 @@
 		33FE6B852587634300F0E47E /* FreightOneIos */ = {
 			isa = PBXGroup;
 			children = (
+				33BD2FFC2590C564004E5C2F /* CustomTableCells */,
 				33FE6BE82587BB4200F0E47E /* Model */,
 				33FE6B862587634300F0E47E /* AppDelegate.swift */,
 				33FE6B882587634300F0E47E /* SceneDelegate.swift */,
 				33FE6B8C2587634300F0E47E /* Main.storyboard */,
 				33FE6B8F2587634500F0E47E /* Assets.xcassets */,
-				33FE6BE0258797C800F0E47E /* Launch Screen.storyboard */,
 				33FE6B942587634500F0E47E /* Info.plist */,
 				33FE6BD82587891200F0E47E /* LoginController.swift */,
 				33FE6BFE2587C83000F0E47E /* DashboardController.swift */,
 				33FE6CCA25890D3900F0E47E /* CompleteLoadsController.swift */,
 				33FE6CCC25890D5100F0E47E /* UpcomingLoadsController.swift */,
 				3371AC81258A04230014F721 /* CellDetailsController.swift */,
-				3369691F258B77FD00C02F02 /* StopsTableViewCell.swift */,
-				33696920258B77FD00C02F02 /* StopsTableViewCell.xib */,
+				33BD2FF62590BC4C004E5C2F /* Launch Screen.storyboard */,
 			);
 			path = FreightOneIos;
 			sourceTree = "<group>";
@@ -294,9 +308,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				33FE6BE1258797C800F0E47E /* Launch Screen.storyboard in Resources */,
+				33BD300E2590C5E8004E5C2F /* TopDetailsStopsCell.xib in Resources */,
 				33FE6B902587634500F0E47E /* Assets.xcassets in Resources */,
 				33FE6B8E2587634300F0E47E /* Main.storyboard in Resources */,
+				33BD2FF72590BC4C004E5C2F /* Launch Screen.storyboard in Resources */,
 				33696922258B77FD00C02F02 /* StopsTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -369,6 +384,7 @@
 				3371AC99258A7D190014F721 /* LoadStatus.swift in Sources */,
 				3371ACB5258A91FA0014F721 /* DriverTruckDTO.swift in Sources */,
 				3371AC94258A7C610014F721 /* LoadCustomerDTO.swift in Sources */,
+				33BD300D2590C5E8004E5C2F /* TopDetailsStopsCell.swift in Sources */,
 				33FE6B872587634300F0E47E /* AppDelegate.swift in Sources */,
 				3371AC82258A04230014F721 /* CellDetailsController.swift in Sources */,
 				3371ACBA258A92100014F721 /* TruckLoadDTO.swift in Sources */,

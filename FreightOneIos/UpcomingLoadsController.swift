@@ -33,12 +33,13 @@ class UpcomingLoadsController: UIViewController,UITableViewDelegate,UITableViewD
         var request = URLRequest(url: requestUrl)
         request.httpMethod = "GET"
         
-        let token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzb2ZlciIsInJvbGVzIjoiUk9MRV9EUklWRVIiLCJpYXQiOjE2MDgwOTc1MTV9.eo3tjsfZcDOzkqRpBlMQ_7wI3nG1lsVI-bc_xLTqTV8"
-        
-        print("tokenId >> \(User.userToken)")
+//        let token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzb2ZlciIsInJvbGVzIjoiUk9MRV9EUklWRVIiLCJpYXQiOjE2MDgwOTc1MTV9.eo3tjsfZcDOzkqRpBlMQ_7wI3nG1lsVI-bc_xLTqTV8"
+//
+//        print("tokenId >> \(User.userToken)")
         
         //HTTP Headers
-        request.setValue("Bearer \(token)", forHTTPHeaderField:"Authorization")        // Set HTTP Request Body
+        request.setValue("Bearer \(User.userToken)", forHTTPHeaderField:"Authorization")
+        
         // Perform HTTP Request
         
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
@@ -52,12 +53,11 @@ class UpcomingLoadsController: UIViewController,UITableViewDelegate,UITableViewD
             if let httpResponse = response as? HTTPURLResponse {
                 print("error at Get Loads \(httpResponse.statusCode)")
                 if httpResponse.statusCode == 200 {
-                    do {
-                        let loadsForDriver = try? JSONDecoder().decode(LoadsForDriver.self, from: data!)
-                        completion(loadsForDriver!,nil)
-                    } catch {
-                        print(error)
-                    }
+                    let loadsForDriver = try? JSONDecoder().decode(LoadsForDriver.self, from: data!)
+                    completion(loadsForDriver!,nil)
+                    
+                } else {
+                    //handle error
                 }
             }
         }

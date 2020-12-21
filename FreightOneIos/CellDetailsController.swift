@@ -28,15 +28,11 @@ class CellDetailsController: UIViewController,UITableViewDelegate,UITableViewDat
         fetchLoadById(loadId: loadId!){(idLoadForDriver,nil) in
             DispatchQueue.main.async {
                 self.idLoadForDriver = idLoadForDriver
+                self.title = String(self.loadId!)
                 
-                self.customerLoadTxt.text = idLoadForDriver.customerLoad ?? ""
-                self.brokerTxt.text = idLoadForDriver.customer?.companyName ?? ""
-                self.driverText.text = "\(idLoadForDriver.driver?.firstName ?? "") \(idLoadForDriver.driver?.lastName ?? "")\n\(idLoadForDriver.driver2?.firstName ?? "") \(idLoadForDriver.driver2?.lastName ?? "")"
-                self.trailerTxt.text = idLoadForDriver.trailer?.unitNumber ?? ""
-                self.truckTxt.text = idLoadForDriver.truck?.unitNumber ?? ""
-                self.emptyMilesTxt.text = "\(String(idLoadForDriver.emptyMiles ?? 0))/\(String(idLoadForDriver.loadedMiles ?? 0))"
-                self.temperatureTxt.text = String(idLoadForDriver.temperature ?? 0)
+                self.tableView.register(TopDetailsStopsCell.nib(), forCellReuseIdentifier: TopDetailsStopsCell.identifier)
                 self.tableView.register(StopsTableViewCell.nib(), forCellReuseIdentifier: StopsTableViewCell.identifier)
+                
                 self.tableView.allowsSelection = false
                 self.tableView.delegate = self
                 self.tableView.dataSource = self
@@ -54,31 +50,21 @@ class CellDetailsController: UIViewController,UITableViewDelegate,UITableViewDat
         var request = URLRequest(url: requestUrl)
         request.httpMethod = "GET"
         
-        let token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzb2ZlciIsInJvbGVzIjoiUk9MRV9EUklWRVIiLCJpYXQiOjE2MDgwOTc1MTV9.eo3tjsfZcDOzkqRpBlMQ_7wI3nG1lsVI-bc_xLTqTV8"
-        
-        print("tokenId >> \(User.userToken)")
-        
+//        let token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzb2ZlciIsInJvbGVzIjoiUk9MRV9EUklWRVIiLCJpYXQiOjE2MDgwOTc1MTV9.eo3tjsfZcDOzkqRpBlMQ_7wI3nG1lsVI-bc_xLTqTV8"
+//
+//        print("tokenId >> \(User.userToken)")
+//
         //HTTP Headers
-        request.setValue("Bearer \(token)", forHTTPHeaderField:"Authorization")        // Set HTTP Request Body
+        request.setValue("Bearer \(User.userToken)", forHTTPHeaderField:"Authorization")        // Set HTTP Request Body
         // Perform HTTP Request
         
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
             
-            // Check for Error
-            if let error = error {
-                print("Error code load ID \(error)")
-                return
-            }
-            
             if let httpResponse = response as? HTTPURLResponse {
                 if httpResponse.statusCode == 200 {
-                    do {
-                        print("Sucess getting load \(httpResponse.statusCode)")
-                        let idLoadForDriver = try? JSONDecoder().decode(SingleLoads.self, from: data!)
-                        completion(idLoadForDriver!,nil)
-                    } catch {
-                        print(error)
-                    }
+                    let idLoadForDriver = try? JSONDecoder().decode(SingleLoads.self, from: data!)
+                    completion(idLoadForDriver!,nil)
+                    
                 }
             }
         }
@@ -93,12 +79,25 @@ class CellDetailsController: UIViewController,UITableViewDelegate,UITableViewDat
         return nil
     }
     
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return idLoadForDriver?.loadStops?.loadStop!.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.row == 0 {
+            let topCell = tableView.dequeueReusableCell(withIdentifier: TopDetailsStopsCell.identifier,for: indexPath) as? TopDetailsStopsCell
+            
+            topCell?.customerLoadTxt.text = idLoadForDriver?.customerLoad ?? ""
+            topCell?.brokerTxt.text = idLoadForDriver?.customer?.companyName ?? ""
+            topCell?.driverText.text = "\(idLoadForDriver?.driver?.firstName ?? "") \(idLoadForDriver?.driver?.lastName ?? "")\n\(idLoadForDriver?.driver2?.firstName ?? "") \(idLoadForDriver?.driver2?.lastName ?? "")"
+            topCell?.trailerTxt.text = idLoadForDriver?.trailer?.unitNumber ?? ""
+            topCell?.truckTxt.text = idLoadForDriver?.truck?.unitNumber ?? ""
+            topCell?.emptyMilesTxt.text = "\(String(idLoadForDriver?.emptyMiles ?? 0))/\(String(idLoadForDriver?.loadedMiles ?? 0))"
+            topCell?.temperatureTxt.text = String(idLoadForDriver?.temperature ?? 0)
+            
+            return topCell!
+        }
+        
         cell = tableView.dequeueReusableCell(withIdentifier: StopsTableViewCell.identifier,for: indexPath) as? StopsTableViewCell
         cell.delegate = self
         cell.arriveButton.tag = indexPath.row
@@ -186,29 +185,20 @@ extension CellDetailsController: StopsTableViewCellDelegate {
         var request = URLRequest(url: requestUrl)
         request.httpMethod = "GET"
         
-        let token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzb2ZlciIsInJvbGVzIjoiUk9MRV9EUklWRVIiLCJpYXQiOjE2MDgwOTc1MTV9.eo3tjsfZcDOzkqRpBlMQ_7wI3nG1lsVI-bc_xLTqTV8"
-        
-        print("tokenId >> \(User.userToken)")
+//        let token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzb2ZlciIsInJvbGVzIjoiUk9MRV9EUklWRVIiLCJpYXQiOjE2MDgwOTc1MTV9.eo3tjsfZcDOzkqRpBlMQ_7wI3nG1lsVI-bc_xLTqTV8"
+//
+//        print("tokenId >> \(User.userToken)")
         
         //HTTP Headers
-        request.setValue("Bearer \(token)", forHTTPHeaderField:"Authorization")        // Set HTTP Request Body
+        request.setValue("Bearer \(User.userToken)", forHTTPHeaderField:"Authorization")        // Set HTTP Request Body
         // Perform HTTP Request
         
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-            
-            // Check for Error
-            if let error = error {
-                print("Error code load ID \(error)")
-                return
-            }
-            
             if let httpResponse = response as? HTTPURLResponse {
                 if httpResponse.statusCode == 200 {
-                    do {
-                        print("Success Updating load \(statusCode)")
-                    } catch {
-                        print(error)
-                    }
+                    // handle response
+                } else {
+                    //handle error
                 }
             }
         }

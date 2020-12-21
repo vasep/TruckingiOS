@@ -15,6 +15,15 @@ class LoginController: UIViewController {
     @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet var keyboardHeightLayoutConstraint: NSLayoutConstraint?
     
+    override func viewDidAppear(_ animated: Bool) {
+        User.userToken = UserDefaults.standard.string(forKey:"userToken") ?? ""
+//
+        if(!(User.userToken.isEmpty)){
+            self.dismiss(animated: true, completion: nil)
+            self.performSegue(withIdentifier: "login_segue", sender: nil)
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(sender:)), name: UIResponder.keyboardWillShowNotification, object: nil);
