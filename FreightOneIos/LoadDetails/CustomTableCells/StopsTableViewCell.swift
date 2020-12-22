@@ -46,6 +46,7 @@ class StopsTableViewCell: UITableViewCell {
         delegate?.didTapLoadedButton(sender.tag)
         arriveButton.isEnabled = false
         loadedButton.isEnabled = false
+        
         arriveButton.setTitleColor(UIColor.white, for: .normal)
         loadedButton.setTitleColor(UIColor.white, for: .normal)
         arriveButton.backgroundColor = UIColor.green

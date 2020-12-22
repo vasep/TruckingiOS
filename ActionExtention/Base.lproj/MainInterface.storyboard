@@ -20,7 +20,7 @@
                                 <rect key="frame" x="85" y="189" width="150" height="150"/>
                                 <subviews>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rhb-Lf-RO6">
-                                        <rect key="frame" x="52" y="110" width="46" height="30"/>
+                                        <rect key="frame" x="52" y="105" width="46" height="30"/>
                                         <state key="normal" title="Ok"/>
                                         <connections>
                                             <action selector="dissmissButtonClicked:" destination="ObA-dk-sSI" eventType="touchUpInside" id="vBe-Cn-N8P"/>
@@ -66,7 +66,7 @@
                                     <constraint firstItem="gCg-YK-XNQ" firstAttribute="centerX" secondItem="lRF-If-bOq" secondAttribute="centerX" id="Z2W-tz-Nxd"/>
                                     <constraint firstItem="3gd-9O-6GK" firstAttribute="centerX" secondItem="lRF-If-bOq" secondAttribute="centerX" id="bTi-lh-oIK"/>
                                     <constraint firstItem="Kta-BX-eO2" firstAttribute="centerX" secondItem="lRF-If-bOq" secondAttribute="centerX" id="hmT-Jc-nAN"/>
-                                    <constraint firstAttribute="bottom" secondItem="Rhb-Lf-RO6" secondAttribute="bottom" constant="10" id="iw6-rT-jt9"/>
+                                    <constraint firstAttribute="bottom" secondItem="Rhb-Lf-RO6" secondAttribute="bottom" constant="15" id="iw6-rT-jt9"/>
                                     <constraint firstItem="gCg-YK-XNQ" firstAttribute="centerY" secondItem="lRF-If-bOq" secondAttribute="centerY" id="kBj-5U-x4A"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>

@@ -17,7 +17,7 @@ class LoginController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         User.userToken = UserDefaults.standard.string(forKey:"userToken") ?? ""
-//
+        //
         if(!(User.userToken.isEmpty)){
             self.dismiss(animated: true, completion: nil)
             self.performSegue(withIdentifier: "login_segue", sender: nil)
@@ -55,17 +55,36 @@ class LoginController: UIViewController {
         checkAndDisplayError()
     }
     
+    func animateErrorLabel(txtMessage: String){
+        UIView.transition(with: self.errorLabel,
+                      duration: 0.25,
+                       options: .transitionCrossDissolve,
+                    animations: { [weak self] in
+                        self?.self.errorLabel.text = txtMessage
+                 }, completion: nil)
+    }
+    
+    func outlineErrorTxtField(field: UITextField){
+        field.layer.borderWidth = 1.0
+        field.layer.cornerRadius = 5
+        field.layer.borderColor = UIColor.red.cgColor
+    }
+    
     func checkAndDisplayError(){
-        //        if(userName.text?.count ?? 0 > 1){
-        //            errorLabel.text = "Please enter username"
-        //            userName.layer.borderColor = UIColor.red.cgColor
-        //        } else if (userName.text?.count ?? 0 > 1){
-        //            errorLabel.text = "Please enter password"
-        //        } else {
-        //        }
-        
-        performLogin(passwordString: password.text!,usernameString: userName.text!)
-        
+        if(userName.text?.isEmpty ?? true ){
+            outlineErrorTxtField(field: userName)
+            animateErrorLabel(txtMessage: "Please enter username")
+        } else if (password.text?.isEmpty ?? true ){
+            userName.layer.borderWidth = 0
+            outlineErrorTxtField(field: password)
+            animateErrorLabel(txtMessage:"Please enter password")
+            
+        } else {
+            userName.layer.borderWidth = 0
+            password.layer.borderWidth = 0
+
+            performLogin(passwordString: password.text!,usernameString: userName.text!)
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -104,7 +123,9 @@ class LoginController: UIViewController {
                 
                 if httpResponse.statusCode == 500 {
                     DispatchQueue.main.async {
-                        // set error label
+                        self.outlineErrorTxtField(field: self.userName)
+                        self.outlineErrorTxtField(field: self.password)
+                        self.animateErrorLabel(txtMessage: "Wrong password or email")
                     }
                 }
                 
@@ -113,11 +134,13 @@ class LoginController: UIViewController {
                     if let responseJ = responseJSON as? [String: Any] {
                         
                         DispatchQueue.main.async {
+                            self.errorLabel.isHidden = true
+                            self.userName.layer.borderWidth = 0
+                            self.password.layer.borderWidth = 0
                             User.userToken = (responseJ["token"] as! String?)!
                             UserDefaults.standard.set(User.userToken, forKey: "userToken")
                             self.dismiss(animated: true, completion: nil)
                             self.performSegue(withIdentifier: "login_segue", sender: nil)
-                            
                         }
                         
                     }

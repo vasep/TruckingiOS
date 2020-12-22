@@ -43,44 +43,10 @@ class ActionViewController: UIViewController {
         }
     }
     
-    func savePdf(urlString:String, fileName:String) {
-        DispatchQueue.main.async {
-            let url = URL(string: urlString)
-            let pdfData = try? Data.init(contentsOf: url!)
-            let resourceDocPath = (FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)).last! as URL
-            let pdfNameFromUrl = "FreightOne-\(fileName).pdf"
-            let actualPath = resourceDocPath.appendingPathComponent(pdfNameFromUrl)
-            do {
-                try pdfData?.write(to: actualPath, options: .atomic)
-                print("pdf successfully saved!")
-            } catch {
-                print("Pdf could not be saved")
-            }
-        }
-    }
-    
     func setPickedFile(file: NSSecureCoding){
         if let fileURL = file as? URL{
             createRequest(fileUrl: fileURL)
         }
-    }
-    
-    func pdfFileAlreadySaved(url:String, fileName:String)-> Bool {
-        var status = false
-        if #available(iOS 10.0, *) {
-            do {
-                let docURL = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
-                let contents = try FileManager.default.contentsOfDirectory(at: docURL, includingPropertiesForKeys: [.fileResourceTypeKey], options: .skipsHiddenFiles)
-                for url in contents {
-                    if url.description.contains("FreightOne-\(fileName).pdf") {
-                        status = true
-                    }
-                }
-            } catch {
-                print("could not locate pdf file !!!!!!!")
-            }
-        }
-        return status
     }
     
     func createRequest(fileUrl : URL){

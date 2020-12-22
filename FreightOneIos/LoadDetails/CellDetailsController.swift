@@ -89,7 +89,8 @@ class CellDetailsController: UIViewController,UITableViewDelegate,UITableViewDat
             
             topCell?.customerLoadTxt.text = idLoadForDriver?.customerLoad ?? ""
             topCell?.brokerTxt.text = idLoadForDriver?.customer?.companyName ?? ""
-            topCell?.driverText.text = "\(idLoadForDriver?.driver?.firstName ?? "") \(idLoadForDriver?.driver?.lastName ?? "")\n\(idLoadForDriver?.driver2?.firstName ?? "") \(idLoadForDriver?.driver2?.lastName ?? "")"
+            topCell?.driverText.text = "\(idLoadForDriver?.driver?.firstName ?? "") \(idLoadForDriver?.driver?.lastName ?? "")"
+            topCell?.driver2.text = "\(idLoadForDriver?.driver2?.firstName ?? "") \(idLoadForDriver?.driver2?.lastName ?? "")"
             topCell?.trailerTxt.text = idLoadForDriver?.trailer?.unitNumber ?? ""
             topCell?.truckTxt.text = idLoadForDriver?.truck?.unitNumber ?? ""
             topCell?.emptyMilesTxt.text = "\(String(idLoadForDriver?.emptyMiles ?? 0))/\(String(idLoadForDriver?.loadedMiles ?? 0))"
