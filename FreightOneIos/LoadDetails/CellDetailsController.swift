@@ -100,10 +100,11 @@ class CellDetailsController: UIViewController,UITableViewDelegate,UITableViewDat
         }
         
         cell = tableView.dequeueReusableCell(withIdentifier: StopsTableViewCell.identifier,for: indexPath) as? StopsTableViewCell
-        cell.delegate = self
         cell.arriveButton.tag = indexPath.row
         cell.loadedButton.tag = indexPath.row
-        
+        cell.arriveButton.addTarget(self, action:#selector(didTapArriveButton), for: .touchUpInside)
+        cell.loadedButton.addTarget(self, action:#selector(didTapLoadedButton), for: .touchUpInside)
+
         cell.stopTypeLabel.text = idLoadForDriver?.loadStops?.loadStop?[indexPath.row].stopType
         cell.cityLabel.text = idLoadForDriver?.loadStops?.loadStop?[indexPath.row].city
         cell.streetLabel.text = idLoadForDriver?.loadStops?.loadStop?[indexPath.row].street
@@ -115,7 +116,7 @@ class CellDetailsController: UIViewController,UITableViewDelegate,UITableViewDat
             cell.loadedButton.setTitle("Loaded", for: .normal)
         }
         
-        if idLoadForDriver?.loadStops?.loadStop?[indexPath.row].status == 1{
+        if idLoadForDriver?.loadStops?.loadStop?[indexPath.row].status == 1 {
             cell.arriveButton.setTitleColor(UIColor.white, for: .normal)
             cell.arriveButton.backgroundColor = UIColor.green
             cell.arriveButton.isEnabled = false
@@ -130,24 +131,23 @@ class CellDetailsController: UIViewController,UITableViewDelegate,UITableViewDat
         
         return cell
     }
-}
+    
+    @objc private func didTapArriveButton(sender: UIButton) {
+        showAlerForPerormButtonAction(loadStatusInt:1,button: sender,rowId: sender.tag)
 
-extension CellDetailsController: StopsTableViewCellDelegate {
-    func didTapArriveButton(_ tag: Int) {
-        showAlerForPerormButtonAction(tag: tag,loadStatusInt:1)
     }
     
-    func didTapLoadedButton(_ tag: Int) {
-        showAlerForPerormButtonAction(tag: tag,loadStatusInt:2)
+    @objc private func didTapLoadedButton(sender: UIButton) {
+        self.showAlerForPerormButtonAction(loadStatusInt: 2, button: sender, rowId: sender.tag)
     }
-    
-    func showAlerForPerormButtonAction(tag: Int,loadStatusInt : Int) {
+
+    func showAlerForPerormButtonAction(loadStatusInt : Int,button: UIButton,rowId : Int) {
         let alert = UIAlertController(title: "", message: "Are you sure you want to perform this action?", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Confirm", style: .default, handler: { action in
                                         switch action.style{
                                         case .default:
                                             print("default")
-                                            self.performUpdateLoadStatus(statusCode: loadStatusInt,rowId: tag)
+                                            self.performUpdateLoadStatus(statusCode: loadStatusInt, rowId: rowId, button: button)
                                         case .cancel:
                                             print("cancel")
                                             
@@ -178,17 +178,13 @@ extension CellDetailsController: StopsTableViewCellDelegate {
         self.present(alert, animated: true, completion: nil)
     }
     
-    func performUpdateLoadStatus(statusCode : Int, rowId : Int){
+    func performUpdateLoadStatus(statusCode : Int, rowId : Int, button : UIButton){
         // Prepare URL
         let url = URL(string: "http://truckingnew-env.eba-q2gns4ca.us-east-1.elasticbeanstalk.com/api/v1/trucking/mobile/drivers/loads/\(String(self.loadId!))/stop/\(String((self.idLoadForDriver?.loadStops?.loadStop?[rowId].id)!))/status/\(String(statusCode))")
         guard let requestUrl = url else { fatalError() }
         // Prepare URL Request Object
         var request = URLRequest(url: requestUrl)
         request.httpMethod = "GET"
-        
-//        let token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzb2ZlciIsInJvbGVzIjoiUk9MRV9EUklWRVIiLCJpYXQiOjE2MDgwOTc1MTV9.eo3tjsfZcDOzkqRpBlMQ_7wI3nG1lsVI-bc_xLTqTV8"
-//
-//        print("tokenId >> \(User.userToken)")
         
         //HTTP Headers
         request.setValue("Bearer \(User.userToken)", forHTTPHeaderField:"Authorization")        // Set HTTP Request Body
@@ -198,6 +194,21 @@ extension CellDetailsController: StopsTableViewCellDelegate {
             if let httpResponse = response as? HTTPURLResponse {
                 if httpResponse.statusCode == 200 {
                     // handle response
+                    DispatchQueue.main.async {
+                        if(statusCode == 2){
+                            let arriveButton = self.view.viewWithTag(button.tag) as? UIButton
+                            arriveButton?.setTitleColor(UIColor.white, for: .normal)
+                            arriveButton?.backgroundColor = UIColor.green
+                            arriveButton?.isEnabled = false
+                            
+                            button.setTitleColor(UIColor.white, for: .normal)
+                            button.backgroundColor = UIColor.green
+                            button.isEnabled = false
+                        }
+                        button.setTitleColor(UIColor.white, for: .normal)
+                        button.backgroundColor = UIColor.green
+                        button.isEnabled = false
+                    }
                 } else {
                     //handle error
                 }
@@ -205,5 +216,5 @@ extension CellDetailsController: StopsTableViewCellDelegate {
         }
         task.resume()
     }
-}
 
+}

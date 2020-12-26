@@ -31,7 +31,7 @@ class ActionViewController: UIViewController {
             let inputItem = self.extensionContext?.inputItems.first as! NSExtensionItem
             for provider: AnyObject in inputItem.attachments!{
                 let itemProvider = provider as! NSItemProvider
-                if(itemProvider.hasItemConformingToTypeIdentifier(kUTTypePDF as String) || itemProvider.hasItemConformingToTypeIdentifier(kUTTypePlainText as String) || itemProvider.hasItemConformingToTypeIdentifier("com.microsoft.word.doc")){
+                if(itemProvider.hasItemConformingToTypeIdentifier(kUTTypePDF as String)){
                     itemProvider.loadItem(forTypeIdentifier: kUTTypePDF as String, options: nil, completionHandler: { (file, error) in
                         if(error == nil){
                             self.setPickedFile(file: file!)
