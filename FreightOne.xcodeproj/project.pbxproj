@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		33696921258B77FD00C02F02 /* StopsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3369691F258B77FD00C02F02 /* StopsTableViewCell.swift */; };
 		33696922258B77FD00C02F02 /* StopsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33696920258B77FD00C02F02 /* StopsTableViewCell.xib */; };
+		336CA82D25972C900016D58C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33FE6B8F2587634500F0E47E /* Assets.xcassets */; };
+		336CA83E259730420016D58C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33FE6B8F2587634500F0E47E /* Assets.xcassets */; };
 		336F6288258F23B800D379E2 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 336F6287258F23B800D379E2 /* Media.xcassets */; };
 		336F628A258F23B800D379E2 /* ActionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336F6289258F23B800D379E2 /* ActionViewController.swift */; };
 		336F628D258F23B800D379E2 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 336F628B258F23B800D379E2 /* MainInterface.storyboard */; };
@@ -31,7 +33,6 @@
 		33FE6B872587634300F0E47E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FE6B862587634300F0E47E /* AppDelegate.swift */; };
 		33FE6B892587634300F0E47E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FE6B882587634300F0E47E /* SceneDelegate.swift */; };
 		33FE6B8E2587634300F0E47E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33FE6B8C2587634300F0E47E /* Main.storyboard */; };
-		33FE6B902587634500F0E47E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33FE6B8F2587634500F0E47E /* Assets.xcassets */; };
 		33FE6BD92587891200F0E47E /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FE6BD82587891200F0E47E /* LoginController.swift */; };
 		33FE6BF22587BB7600F0E47E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FE6BF12587BB7600F0E47E /* User.swift */; };
 		33FE6BFF2587C83000F0E47E /* DashboardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FE6BFE2587C83000F0E47E /* DashboardController.swift */; };
@@ -87,7 +88,7 @@
 		33BD2FF62590BC4C004E5C2F /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		33BD300B2590C5E8004E5C2F /* TopDetailsStopsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopDetailsStopsCell.swift; sourceTree = "<group>"; };
 		33BD300C2590C5E8004E5C2F /* TopDetailsStopsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TopDetailsStopsCell.xib; sourceTree = "<group>"; };
-		33FE6B832587634300F0E47E /* FreightOneIos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FreightOneIos.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		33FE6B832587634300F0E47E /* FreightOne.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FreightOne.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		33FE6B862587634300F0E47E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		33FE6B882587634300F0E47E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		33FE6B8D2587634300F0E47E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -204,7 +205,7 @@
 		33FE6B842587634300F0E47E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				33FE6B832587634300F0E47E /* FreightOneIos.app */,
+				33FE6B832587634300F0E47E /* FreightOne.app */,
 				336F6285258F23B800D379E2 /* ActionExtention.appex */,
 			);
 			name = Products;
@@ -273,9 +274,9 @@
 			productReference = 336F6285258F23B800D379E2 /* ActionExtention.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
-		33FE6B822587634300F0E47E /* FreightOneIos */ = {
+		33FE6B822587634300F0E47E /* FreightOne */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 33FE6BAD2587634500F0E47E /* Build configuration list for PBXNativeTarget "FreightOneIos" */;
+			buildConfigurationList = 33FE6BAD2587634500F0E47E /* Build configuration list for PBXNativeTarget "FreightOne" */;
 			buildPhases = (
 				3E74E0E1800D6FB7269AF70A /* [CP] Check Pods Manifest.lock */,
 				33FE6B7F2587634300F0E47E /* Sources */,
@@ -288,9 +289,9 @@
 			dependencies = (
 				336F6290258F23B800D379E2 /* PBXTargetDependency */,
 			);
-			name = FreightOneIos;
+			name = FreightOne;
 			productName = FreightOneIos;
-			productReference = 33FE6B832587634300F0E47E /* FreightOneIos.app */;
+			productReference = 33FE6B832587634300F0E47E /* FreightOne.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -310,7 +311,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 33FE6B7E2587634300F0E47E /* Build configuration list for PBXProject "FreightOneIos" */;
+			buildConfigurationList = 33FE6B7E2587634300F0E47E /* Build configuration list for PBXProject "FreightOne" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -323,7 +324,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				33FE6B822587634300F0E47E /* FreightOneIos */,
+				33FE6B822587634300F0E47E /* FreightOne */,
 				336F6284258F23B800D379E2 /* ActionExtention */,
 			);
 		};
@@ -334,6 +335,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				336CA82D25972C900016D58C /* Assets.xcassets in Resources */,
 				336F6288258F23B800D379E2 /* Media.xcassets in Resources */,
 				336F628D258F23B800D379E2 /* MainInterface.storyboard in Resources */,
 			);
@@ -344,10 +346,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				33BD300E2590C5E8004E5C2F /* TopDetailsStopsCell.xib in Resources */,
-				33FE6B902587634500F0E47E /* Assets.xcassets in Resources */,
 				33FE6B8E2587634300F0E47E /* Main.storyboard in Resources */,
 				33BD2FF72590BC4C004E5C2F /* Launch Screen.storyboard in Resources */,
 				33696922258B77FD00C02F02 /* StopsTableViewCell.xib in Resources */,
+				336CA83E259730420016D58C /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -471,9 +473,12 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6F7381B9756710F356838AE5 /* Pods-ActionExtention.debug.xcconfig */;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconExtention;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6Q9NZVFJKL;
 				INFOPLIST_FILE = ActionExtention/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -491,9 +496,12 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CA4697FCA30A4E0C6E1B842E /* Pods-ActionExtention.release.xcconfig */;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconExtention;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6Q9NZVFJKL;
 				INFOPLIST_FILE = ActionExtention/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -633,7 +641,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6Q9NZVFJKL;
 				INFOPLIST_FILE = FreightOneIos/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -655,7 +663,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6Q9NZVFJKL;
 				INFOPLIST_FILE = FreightOneIos/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -679,7 +687,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		33FE6B7E2587634300F0E47E /* Build configuration list for PBXProject "FreightOneIos" */ = {
+		33FE6B7E2587634300F0E47E /* Build configuration list for PBXProject "FreightOne" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				33FE6BAB2587634500F0E47E /* Debug */,
@@ -688,7 +696,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		33FE6BAD2587634500F0E47E /* Build configuration list for PBXNativeTarget "FreightOneIos" */ = {
+		33FE6BAD2587634500F0E47E /* Build configuration list for PBXNativeTarget "FreightOne" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				33FE6BAE2587634500F0E47E /* Debug */,

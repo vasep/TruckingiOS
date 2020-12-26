@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -12,7 +13,7 @@
         <!--Login Controller-->
         <scene sceneID="3Kq-gE-8wx">
             <objects>
-                <viewController id="xnS-KF-9vb" customClass="LoginController" customModule="FreightOneIos" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="xnS-KF-9vb" customClass="LoginController" customModule="FreightOne" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Vbk-ef-9MQ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -44,7 +45,7 @@
                                                     <stackView opaque="NO" contentMode="scaleAspectFit" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="JtI-3O-wXO">
                                                         <rect key="frame" x="0.0" y="33.5" width="271" height="100"/>
                                                         <subviews>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hl1-tD-lIA" customClass="DesignableView" customModule="FreightOneIos" customModuleProvider="target">
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hl1-tD-lIA" customClass="DesignableView" customModule="FreightOne" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="0.0" width="271" height="40"/>
                                                                 <subviews>
                                                                     <textField opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2q9-t6-2qj">
@@ -52,11 +53,12 @@
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="40" id="VJb-2u-HNS"/>
                                                                         </constraints>
+                                                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="14"/>
                                                                         <textInputTraits key="textInputTraits" returnKeyType="next" textContentType="name"/>
                                                                     </textField>
                                                                 </subviews>
-                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                <color key="backgroundColor" name="LoginviewColorSet"/>
                                                                 <constraints>
                                                                     <constraint firstItem="2q9-t6-2qj" firstAttribute="leading" secondItem="hl1-tD-lIA" secondAttribute="leading" id="01z-bt-hVu"/>
                                                                     <constraint firstItem="2q9-t6-2qj" firstAttribute="top" secondItem="hl1-tD-lIA" secondAttribute="top" id="efE-K4-Nzs"/>
@@ -78,7 +80,7 @@
                                                                     </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
                                                             </view>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h8N-Qr-LS2" customClass="DesignableView" customModule="FreightOneIos" customModuleProvider="target">
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h8N-Qr-LS2" customClass="DesignableView" customModule="FreightOne" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="60" width="271" height="40"/>
                                                                 <subviews>
                                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eqq-P9-7Af">
@@ -86,11 +88,12 @@
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="40" id="Zen-9j-Fpn"/>
                                                                         </constraints>
+                                                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="14"/>
                                                                         <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES" textContentType="password"/>
                                                                     </textField>
                                                                 </subviews>
-                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                <color key="backgroundColor" name="LoginviewColorSet"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="bottom" secondItem="eqq-P9-7Af" secondAttribute="bottom" id="38m-OT-x3U"/>
                                                                     <constraint firstItem="eqq-P9-7Af" firstAttribute="top" secondItem="h8N-Qr-LS2" secondAttribute="top" id="P0x-k1-8hh"/>
@@ -117,7 +120,9 @@
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mhj-ay-4Gj">
                                                         <rect key="frame" x="112" y="149" width="47" height="33"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <state key="normal" title="Log In"/>
+                                                        <state key="normal" title="Log In">
+                                                            <color key="titleColor" systemColor="systemBlueColor"/>
+                                                        </state>
                                                         <connections>
                                                             <action selector="loginPressed:" destination="xnS-KF-9vb" eventType="touchUpInside" id="57t-MP-Z4r"/>
                                                         </connections>
@@ -129,9 +134,10 @@
                                                 </constraints>
                                             </stackView>
                                         </subviews>
+                                        <color key="backgroundColor" name="LoginviewColorSet"/>
                                     </stackView>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" name="LoginviewColorSet"/>
                                 <accessibility key="accessibilityConfiguration" label="Log In">
                                     <bool key="isElement" value="NO"/>
                                 </accessibility>
@@ -150,7 +156,7 @@
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="b2u-Cx-SaX"/>
-                        <color key="backgroundColor" red="0.93333333330000001" green="0.93725490199999995" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" name="LoginBackground"/>
                         <constraints>
                             <constraint firstItem="YPr-LY-ZBS" firstAttribute="centerX" secondItem="Vbk-ef-9MQ" secondAttribute="centerX" id="QgE-On-Bon"/>
                             <constraint firstItem="YPr-LY-ZBS" firstAttribute="centerY" secondItem="Vbk-ef-9MQ" secondAttribute="centerY" id="gnZ-pV-6gl"/>
@@ -174,7 +180,7 @@
         <!--Upcoming-->
         <scene sceneID="z7f-JE-HKV">
             <objects>
-                <viewController id="O1m-1S-AAx" customClass="UpcomingLoadsController" customModule="FreightOneIos" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="O1m-1S-AAx" customClass="UpcomingLoadsController" customModule="FreightOne" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9Wl-Nm-Oc1">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -213,7 +219,7 @@
         <!--Completed-->
         <scene sceneID="lXn-bo-ZlI">
             <objects>
-                <viewController id="1v6-aB-wnS" customClass="CompleteLoadsController" customModule="FreightOneIos" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="1v6-aB-wnS" customClass="CompleteLoadsController" customModule="FreightOne" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Hqg-wc-bV7">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -252,7 +258,7 @@
         <!--Cell Details Controller-->
         <scene sceneID="S0n-Lf-v4n">
             <objects>
-                <viewController id="AJm-ow-FED" customClass="CellDetailsController" customModule="FreightOneIos" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="AJm-ow-FED" customClass="CellDetailsController" customModule="FreightOne" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="PpZ-8u-VjP">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -283,7 +289,7 @@
         <!--Loads Dashboard-->
         <scene sceneID="hjE-ak-VPT">
             <objects>
-                <tabBarController id="1q8-2t-rfY" customClass="DashboardController" customModule="FreightOneIos" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController id="1q8-2t-rfY" customClass="DashboardController" customModule="FreightOne" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" title="Loads Dashboard" id="RT7-2k-Mus">
                         <barButtonItem key="rightBarButtonItem" title="Log Out" id="wFg-15-od0">
                             <connections>
@@ -314,7 +320,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
-                            <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="textColor" name="AccentColor"/>
                         </textAttributes>
                     </navigationBar>
                     <connections>
@@ -332,8 +338,20 @@
     <resources>
         <image name="future" width="32" height="32"/>
         <image name="verified" width="32" height="32"/>
+        <namedColor name="AccentColor">
+            <color red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="LoginBackground">
+            <color red="0.93333333333333335" green="0.93725490196078431" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="LoginviewColorSet">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
