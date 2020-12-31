@@ -33,7 +33,7 @@ class DashboardController: UITabBarController {
                                         @unknown default:
                                             fatalError()
                                         }}))
-        alert.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: { action in
+        alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: { action in
                                         switch action.style{
                                         case .default:
                                             print("default")

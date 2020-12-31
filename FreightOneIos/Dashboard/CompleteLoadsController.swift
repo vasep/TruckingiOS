@@ -27,7 +27,7 @@ class CompleteLoadsController: UIViewController,UITableViewDelegate,UITableViewD
     
     func fetchCompletedLoads(completionHandler completion: @escaping (LoadsForDriver, Error?) -> Void){
         // Prepare URL
-        let url = URL(string:"http://truckingnew-env.eba-q2gns4ca.us-east-1.elasticbeanstalk.com/api/v1/trucking/mobile/drivers/loads/paginated?pageNumber=0&pageSize=20&status=Completed")
+        let url = URL(string:"https://www.onecloudtms.com/mobile/drivers/loads/paginated?pageNumber=0&pageSize=20&status=Completed")
         guard let requestUrl = url else { fatalError() }
         // Prepare URL Request Object
         var request = URLRequest(url: requestUrl)

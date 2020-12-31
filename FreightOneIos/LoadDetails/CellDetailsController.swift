@@ -44,7 +44,7 @@ class CellDetailsController: UIViewController,UITableViewDelegate,UITableViewDat
     
     func fetchLoadById(loadId: Int,completionHandler completion: @escaping (SingleLoads, Error?) -> Void){
         // Prepare URL
-        let url = URL(string: "http://truckingnew-env.eba-q2gns4ca.us-east-1.elasticbeanstalk.com/api/v1/trucking/mobile/drivers/loads/\(loadId)")
+        let url = URL(string: "https://www.onecloudtms.com/mobile/drivers/loads/\(loadId)")
         guard let requestUrl = url else { fatalError() }
         // Prepare URL Request Object
         var request = URLRequest(url: requestUrl)
@@ -158,7 +158,7 @@ class CellDetailsController: UIViewController,UITableViewDelegate,UITableViewDat
                                         @unknown default:
                                             fatalError()
                                         }}))
-        alert.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: { action in
+        alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: { action in
                                         switch action.style{
                                         case .default:
                                             print("default")
@@ -180,7 +180,7 @@ class CellDetailsController: UIViewController,UITableViewDelegate,UITableViewDat
     
     func performUpdateLoadStatus(statusCode : Int, rowId : Int, button : UIButton){
         // Prepare URL
-        let url = URL(string: "http://truckingnew-env.eba-q2gns4ca.us-east-1.elasticbeanstalk.com/api/v1/trucking/mobile/drivers/loads/\(String(self.loadId!))/stop/\(String((self.idLoadForDriver?.loadStops?.loadStop?[rowId].id)!))/status/\(String(statusCode))")
+        let url = URL(string: "https://www.onecloudtms.com/mobile/drivers/loads/\(String(self.loadId!))/stop/\(String((self.idLoadForDriver?.loadStops?.loadStop?[rowId].id)!))/status/\(String(statusCode))")
         guard let requestUrl = url else { fatalError() }
         // Prepare URL Request Object
         var request = URLRequest(url: requestUrl)
