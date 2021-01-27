@@ -44,15 +44,13 @@ class CellDetailsController: UIViewController,UITableViewDelegate,UITableViewDat
     
     func fetchLoadById(loadId: Int,completionHandler completion: @escaping (SingleLoads, Error?) -> Void){
         // Prepare URL
-        let url = URL(string: "https://www.onecloudtms.com/mobile/drivers/loads/\(loadId)")
+        let url = URL(string: "dummyURL.com")
         guard let requestUrl = url else { fatalError() }
         // Prepare URL Request Object
         var request = URLRequest(url: requestUrl)
         request.httpMethod = "GET"
         
-//        let token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzb2ZlciIsInJvbGVzIjoiUk9MRV9EUklWRVIiLCJpYXQiOjE2MDgwOTc1MTV9.eo3tjsfZcDOzkqRpBlMQ_7wI3nG1lsVI-bc_xLTqTV8"
 //
-//        print("tokenId >> \(User.userToken)")
 //
         //HTTP Headers
         request.setValue("Bearer \(User.userToken)", forHTTPHeaderField:"Authorization")        // Set HTTP Request Body
@@ -180,7 +178,7 @@ class CellDetailsController: UIViewController,UITableViewDelegate,UITableViewDat
     
     func performUpdateLoadStatus(statusCode : Int, rowId : Int, button : UIButton){
         // Prepare URL
-        let url = URL(string: "https://www.onecloudtms.com/mobile/drivers/loads/\(String(self.loadId!))/stop/\(String((self.idLoadForDriver?.loadStops?.loadStop?[rowId].id)!))/status/\(String(statusCode))")
+        let url = URL(string: "dummyURL/\(String(self.loadId!))/stop/\(String((self.idLoadForDriver?.loadStops?.loadStop?[rowId].id)!))/status/\(String(statusCode))")
         guard let requestUrl = url else { fatalError() }
         // Prepare URL Request Object
         var request = URLRequest(url: requestUrl)

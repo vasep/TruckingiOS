@@ -51,7 +51,7 @@ class ActionViewController: UIViewController {
     
     func createRequest(fileUrl : URL){
         
-        let url = URL(string:"http://truckingnew-env.eba-q2gns4ca.us-east-1.elasticbeanstalk.com/api/v1/trucking/file/upload/pdf/0")
+        let url = URL(string:"dummyURL.com")
         guard let requestUrl = url else { fatalError() }
         
         // generate boundary string using a unique per-app string
@@ -63,7 +63,7 @@ class ActionViewController: UIViewController {
         var request = URLRequest(url: requestUrl)
         request.httpMethod = "POST"
         
-        let token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzb2ZlciIsInJvbGVzIjoiUk9MRV9EUklWRVIiLCJpYXQiOjE2MDgwOTc1MTV9.eo3tjsfZcDOzkqRpBlMQ_7wI3nG1lsVI-bc_xLTqTV8"
+        let token = "dummyToken"
         
         request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
         

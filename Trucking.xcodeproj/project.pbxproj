@@ -88,7 +88,7 @@
 		33BD2FF62590BC4C004E5C2F /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		33BD300B2590C5E8004E5C2F /* TopDetailsStopsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopDetailsStopsCell.swift; sourceTree = "<group>"; };
 		33BD300C2590C5E8004E5C2F /* TopDetailsStopsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TopDetailsStopsCell.xib; sourceTree = "<group>"; };
-		33FE6B832587634300F0E47E /* FreightOne.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FreightOne.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		33FE6B832587634300F0E47E /* Trucking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Trucking.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		33FE6B862587634300F0E47E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		33FE6B882587634300F0E47E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		33FE6B8D2587634300F0E47E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -205,7 +205,7 @@
 		33FE6B842587634300F0E47E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				33FE6B832587634300F0E47E /* FreightOne.app */,
+				33FE6B832587634300F0E47E /* Trucking.app */,
 				336F6285258F23B800D379E2 /* ActionExtention.appex */,
 			);
 			name = Products;
@@ -274,9 +274,9 @@
 			productReference = 336F6285258F23B800D379E2 /* ActionExtention.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
-		33FE6B822587634300F0E47E /* FreightOne */ = {
+		33FE6B822587634300F0E47E /* Trucking */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 33FE6BAD2587634500F0E47E /* Build configuration list for PBXNativeTarget "FreightOne" */;
+			buildConfigurationList = 33FE6BAD2587634500F0E47E /* Build configuration list for PBXNativeTarget "Trucking" */;
 			buildPhases = (
 				3E74E0E1800D6FB7269AF70A /* [CP] Check Pods Manifest.lock */,
 				33FE6B7F2587634300F0E47E /* Sources */,
@@ -289,9 +289,9 @@
 			dependencies = (
 				336F6290258F23B800D379E2 /* PBXTargetDependency */,
 			);
-			name = FreightOne;
+			name = Trucking;
 			productName = FreightOneIos;
-			productReference = 33FE6B832587634300F0E47E /* FreightOne.app */;
+			productReference = 33FE6B832587634300F0E47E /* Trucking.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -311,7 +311,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 33FE6B7E2587634300F0E47E /* Build configuration list for PBXProject "FreightOne" */;
+			buildConfigurationList = 33FE6B7E2587634300F0E47E /* Build configuration list for PBXProject "Trucking" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -324,7 +324,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				33FE6B822587634300F0E47E /* FreightOne */,
+				33FE6B822587634300F0E47E /* Trucking */,
 				336F6284258F23B800D379E2 /* ActionExtention */,
 			);
 		};
@@ -484,7 +484,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.sampleP.FreightOneIos.ActionExtention;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sampleP.Trucking.ActionExtention;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -507,7 +507,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.sampleP.FreightOneIos.ActionExtention;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sampleP.Trucking.ActionExtention;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -646,7 +646,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.sampleP.FreightOneIos;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sampleP.Trucking;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -668,7 +668,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.sampleP.FreightOneIos;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sampleP.Trucking;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -687,7 +687,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		33FE6B7E2587634300F0E47E /* Build configuration list for PBXProject "FreightOne" */ = {
+		33FE6B7E2587634300F0E47E /* Build configuration list for PBXProject "Trucking" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				33FE6BAB2587634500F0E47E /* Debug */,
@@ -696,7 +696,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		33FE6BAD2587634500F0E47E /* Build configuration list for PBXNativeTarget "FreightOne" */ = {
+		33FE6BAD2587634500F0E47E /* Build configuration list for PBXNativeTarget "Trucking" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				33FE6BAE2587634500F0E47E /* Debug */,

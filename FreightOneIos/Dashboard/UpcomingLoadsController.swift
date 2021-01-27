@@ -27,16 +27,12 @@ class UpcomingLoadsController: UIViewController,UITableViewDelegate,UITableViewD
     
     func fetchCompletedLoads(completionHandler completion: @escaping (LoadsForDriver, Error?) -> Void){
         // Prepare URL
-        let url = URL(string:"https://www.onecloudtms.com/mobile/drivers/loads/paginated?pageNumber=0&pageSize=20&status=Upcoming")
+        let url = URL(string:"dummyURL.com")
         guard let requestUrl = url else { fatalError() }
         // Prepare URL Request Object
         var request = URLRequest(url: requestUrl)
         request.httpMethod = "GET"
-        
-//        let token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzb2ZlciIsInJvbGVzIjoiUk9MRV9EUklWRVIiLCJpYXQiOjE2MDgwOTc1MTV9.eo3tjsfZcDOzkqRpBlMQ_7wI3nG1lsVI-bc_xLTqTV8"
-//
-//        print("tokenId >> \(User.userToken)")
-        
+            
         //HTTP Headers
         request.setValue("Bearer \(User.userToken)", forHTTPHeaderField:"Authorization")
         

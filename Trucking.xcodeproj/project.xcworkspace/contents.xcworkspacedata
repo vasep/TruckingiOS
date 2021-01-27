@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:/Users/vasilpanov/Desktop/FreightOneIos/FreightOne.xcodeproj">
+      location = "self:../TruckingIos">
    </FileRef>
 </Workspace>

@@ -98,7 +98,7 @@ class LoginController: UIViewController {
                                    "password":passwordString]
         let jsonData = try? JSONSerialization.data(withJSONObject: json, options: .prettyPrinted)
         // Prepare URL
-        let url = URL(string: "https://www.onecloudtms.com/token/generate-token")
+        let url = URL(string: "dummyURL.com")
         guard let requestUrl = url else { fatalError() }
         // Prepare URL Request Object
         var request = URLRequest(url: requestUrl)

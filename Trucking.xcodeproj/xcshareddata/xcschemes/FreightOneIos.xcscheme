@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "33FE6B822587634300F0E47E"
-               BuildableName = "FreightOne.app"
-               BlueprintName = "FreightOne"
-               ReferencedContainer = "container:FreightOne.xcodeproj">
+               BuildableName = "Trucking.app"
+               BlueprintName = "Trucking"
+               ReferencedContainer = "container:Trucking.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -29,23 +29,23 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
          <TestableReference
-            skipped = "NO">
+            skipped = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "33FE6B982587634500F0E47E"
                BuildableName = "FreightOneIosTests.xctest"
                BlueprintName = "FreightOneIosTests"
-               ReferencedContainer = "container:FreightOne.xcodeproj">
+               ReferencedContainer = "container:Trucking.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
-            skipped = "NO">
+            skipped = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "33FE6BA32587634500F0E47E"
                BuildableName = "FreightOneIosUITests.xctest"
                BlueprintName = "FreightOneIosUITests"
-               ReferencedContainer = "container:FreightOne.xcodeproj">
+               ReferencedContainer = "container:Trucking.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -65,9 +65,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "33FE6B822587634300F0E47E"
-            BuildableName = "FreightOne.app"
-            BlueprintName = "FreightOne"
-            ReferencedContainer = "container:FreightOne.xcodeproj">
+            BuildableName = "Trucking.app"
+            BlueprintName = "Trucking"
+            ReferencedContainer = "container:Trucking.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -82,9 +82,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "33FE6B822587634300F0E47E"
-            BuildableName = "FreightOne.app"
-            BlueprintName = "FreightOne"
-            ReferencedContainer = "container:FreightOne.xcodeproj">
+            BuildableName = "Trucking.app"
+            BlueprintName = "Trucking"
+            ReferencedContainer = "container:Trucking.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
